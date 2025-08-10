@@ -1,45 +1,40 @@
 package com.zeta.PMS.entity;
 
+import com.zeta.PMS.enums.PaymentType;
+import com.zeta.PMS.enums.PaymentCategory;
+import com.zeta.PMS.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
+import java.time.LocalDate;
 
-enum PaymentType {
-    INCOMING,
-    OUTGOING
-}
-
-enum PaymentCategory {
-    SALARY,
-    VENDOR,
-    INVOICE
-}
-
-enum PaymentStatus {
-    PENDING,
-    PROCESSING,
-    COMPLETED
-}
-
-
-@Data @Entity @Table(name="payments")
+@Data
+@Entity
+@Table(name = "payments")
 public class Payment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="payment_id")
-    private Long Id;
+    @Column(name = "payment_id")
+    private Long id;
 
-    @Column(name="payment_amount")
+    @Column(name = "payment_amount", nullable = false)
     private double amount;
 
-    @Column(name="payment_type")
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_type", nullable = false)
     private PaymentType type;
 
-    @Column(name="payment_category")
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_category", nullable = false)
     private PaymentCategory category;
 
-    @Column(name = "payment_status")
     @Enumerated(EnumType.STRING)
+    @Column(name = "payment_status", nullable = false)
     private PaymentStatus status;
+
+    @Column(name = "payment_date", nullable = false)
+    private LocalDate date;
+
+    @Column(name = "created_by", nullable = false)
+    private Long createdBy;
 }
