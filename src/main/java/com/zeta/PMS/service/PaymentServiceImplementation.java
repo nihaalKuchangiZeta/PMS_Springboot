@@ -2,6 +2,7 @@ package com.zeta.PMS.service;
 
 import com.zeta.PMS.dto.PaymentRequest;
 import com.zeta.PMS.entity.Payment;
+import com.zeta.PMS.entity.User;
 import com.zeta.PMS.enums.PaymentCategory;
 import com.zeta.PMS.enums.PaymentStatus;
 import com.zeta.PMS.enums.PaymentType;
@@ -52,7 +53,9 @@ public class PaymentServiceImplementation implements PaymentService {
             payment.setCategory(category);
             payment.setStatus(status);
             payment.setDate(date);
-            payment.setCreatedBy(request.getCreatedBy());
+            payment.setUserID(request.getCreatedBy());
+            User creator = userRepository.getReferenceById(request.getCreatedBy());
+            payment.setCreatedBy(creator);
 
             return repository.save(payment);
 
@@ -127,7 +130,8 @@ public class PaymentServiceImplementation implements PaymentService {
                 if (!userRepository.existsById(updatedRequest.getCreatedBy())) {
                     throw new PaymentCreationException("CreatedBy user ID does not exist in the User Table.");
                 }
-                existingPayment.setCreatedBy(updatedRequest.getCreatedBy());
+                existingPayment.setUserID(updatedRequest.getCreatedBy());
+                existingPayment.setCreatedBy(userRepository.getReferenceById(updatedRequest.getCreatedBy()));
             }
 
             return repository.save(existingPayment);

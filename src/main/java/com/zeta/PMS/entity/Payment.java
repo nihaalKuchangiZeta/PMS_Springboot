@@ -1,5 +1,6 @@
 package com.zeta.PMS.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.zeta.PMS.enums.PaymentType;
 import com.zeta.PMS.enums.PaymentCategory;
 import com.zeta.PMS.enums.PaymentStatus;
@@ -35,6 +36,11 @@ public class Payment {
     @Column(name = "payment_date", nullable = false)
     private LocalDate date;
 
-    @Column(name = "created_by", nullable = false)
-    private Long createdBy;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "created_by", nullable = false)
+    @JsonIgnore
+    private User createdBy;
+
+    @JoinColumn(name = "user_id", nullable = false)
+    private Long userID;
 }
