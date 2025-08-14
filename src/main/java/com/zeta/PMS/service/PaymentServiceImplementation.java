@@ -47,9 +47,9 @@ public class PaymentServiceImplementation implements PaymentService {
                 throw new PaymentCreationException("Payment amount must be greater than zero.");
             }
 
-            PaymentType type = ValidationUtil.parseEnumIgnoreCase(PaymentType.class, request.getType());
-            PaymentCategory category = ValidationUtil.parseEnumIgnoreCase(PaymentCategory.class, request.getCategory());
-            PaymentStatus status = ValidationUtil.parseEnumIgnoreCase(PaymentStatus.class, request.getStatus());
+            PaymentType type = ValidationUtil.parseEnum(PaymentType.class, request.getType());
+            PaymentCategory category = ValidationUtil.parseEnum(PaymentCategory.class, request.getCategory());
+            PaymentStatus status = ValidationUtil.parseEnum(PaymentStatus.class, request.getStatus());
 
             LocalDate date = ValidationUtil.parseDate(request.getDate());
             if (date.isAfter(LocalDate.now())) {
@@ -131,19 +131,19 @@ public class PaymentServiceImplementation implements PaymentService {
 
             // Type
             if (request.getType() != null) {
-                PaymentType type = ValidationUtil.parseEnumIgnoreCase(PaymentType.class, request.getType());
+                PaymentType type = ValidationUtil.parseEnum(PaymentType.class, request.getType());
                 existingPayment.setType(type);
             }
 
             // Category
             if (request.getCategory() != null) {
-                PaymentCategory category = ValidationUtil.parseEnumIgnoreCase(PaymentCategory.class, request.getCategory());
+                PaymentCategory category = ValidationUtil.parseEnum(PaymentCategory.class, request.getCategory());
                 existingPayment.setCategory(category);
             }
 
             // Status
             if (request.getStatus() != null) {
-                PaymentStatus status = ValidationUtil.parseEnumIgnoreCase(PaymentStatus.class, request.getStatus());
+                PaymentStatus status = ValidationUtil.parseEnum(PaymentStatus.class, request.getStatus());
                 existingPayment.setStatus(status);
             }
 

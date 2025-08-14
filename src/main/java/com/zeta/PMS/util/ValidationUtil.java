@@ -3,25 +3,10 @@ package com.zeta.PMS.util;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.regex.Pattern;
 
 public class ValidationUtil {
-    
+
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static <E extends Enum<E>> boolean isValidEnumValue(Class<E> enumClass, String value) {
-        if (value == null) return false;
-        try {
-            Enum.valueOf(enumClass, value.trim().toUpperCase());
-            return true;
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    public static boolean isValidDate(LocalDate date) {
-        return date != null && !date.isAfter(LocalDate.now()); // Must not be future date
-    }
-
     public static LocalDate parseDate(String dateStr) {
         if (dateStr == null || dateStr.trim().isEmpty()) {
             throw new IllegalArgumentException("Date cannot be null or empty.");
@@ -37,7 +22,7 @@ public class ValidationUtil {
         }
     }
 
-    public static <E extends Enum<E>> E parseEnumIgnoreCase(Class<E> enumClass, String value) {
+    public static <E extends Enum<E>> E parseEnum(Class<E> enumClass, String value) {
         if (value == null) {
             throw new IllegalArgumentException("Enum value cannot be null.");
         }

@@ -37,7 +37,7 @@ public class UserServiceImplementation implements UserService {
 
         UserRole role;
         try {
-            role = ValidationUtil.parseEnumIgnoreCase(UserRole.class, request.getRole());
+            role = ValidationUtil.parseEnum(UserRole.class, request.getRole());
         } catch (IllegalArgumentException e) {
             log.error("Invalid role provided: {}", request.getRole());
             throw new UserCreationException(e.getMessage() + ". Must be ADMIN, FINANCE_MANAGER, or VIEWER");

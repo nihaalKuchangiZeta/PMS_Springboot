@@ -17,7 +17,4 @@ public class PasswordUtilService {
         return passwordEncoder.encode(rawPassword);
     }
 
-    public boolean matches(String rawPassword, String hashedPassword) {
-        return passwordEncoder.matches(rawPassword, hashedPassword);
-    }
 }
