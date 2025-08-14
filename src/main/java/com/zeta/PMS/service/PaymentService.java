@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface PaymentService {
 
-    Payment createPayment(PaymentRequest payment);
+    Payment createPayment(PaymentRequest payment,String authHeader);
 
     List<Payment> getAllPayments();
 
     Payment getPaymentById(Long id);
 
-    Payment updatePayment(Long id, PaymentRequest payment);
+    Payment updatePayment(Long id, PaymentRequest request, String authHeader);
 
-    void deletePayment(Long id);
+    String deletePayment(Long id);
 }
 

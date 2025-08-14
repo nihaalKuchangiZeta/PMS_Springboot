@@ -1,11 +1,11 @@
 package com.zeta.PMS.service;
 
 import com.zeta.PMS.dto.UserRequest;
-import com.zeta.PMS.entity.User;
+import com.zeta.PMS.dto.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
-    public User createUser(UserRequest user);
-    public List<User> getAllUsers();
+    public UserResponse createUser(UserRequest user);
+    public List<UserResponse> getAllUsers();
 }

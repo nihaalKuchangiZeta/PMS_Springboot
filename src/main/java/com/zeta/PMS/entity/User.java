@@ -27,6 +27,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @Column(name="user_password", nullable = false)
+    private String password;
+
     @OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Payment> payments = new ArrayList<>();
 

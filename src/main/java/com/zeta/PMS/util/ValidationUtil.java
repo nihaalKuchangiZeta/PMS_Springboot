@@ -6,17 +6,8 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Pattern;
 
 public class ValidationUtil {
-
-    // Simple RFC 5322 compliant regex
-    private static final Pattern EMAIL_PATTERN =
-            Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$");
-
+    
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-    public static boolean isValidEmail(String email) {
-        return email != null && EMAIL_PATTERN.matcher(email).matches();
-    }
-
     public static <E extends Enum<E>> boolean isValidEnumValue(Class<E> enumClass, String value) {
         if (value == null) return false;
         try {
